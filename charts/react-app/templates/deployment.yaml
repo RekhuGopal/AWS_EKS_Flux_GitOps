@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name | quote }}
+  labels:
+    app: react-app
+    {{- include "react-app.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: react-app
+      {{- include "react-app.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        app: react-app
+        {{- include "react-app.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - image: {{ .Values.deployment.container.image.repository }}:{{ .Values.deployment.container.image.tag }}
+        imagePullPolicy: {{ .Values.deployment.container.imagePullPolicy }}
+        name: {{ .Values.deployment.name | quote }}
+        ports:
+        - containerPort: {{ .Values.deployment.container.containerPort }}
+          protocol: TCP
+        resources:
+        {{- toYaml .Values.deployment.container.resources | nindent 12 }}

@@ -1,0 +1,29 @@
+deployment:
+  name: react-app
+  container:
+    image:
+      repository:
+      tag: latest
+    imagePullPolicy: Always
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+    containerPort: 5000
+  replicas: 4
+
+service:
+  name: react-app
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 5000
+    protocol: TCP
+    targetPort: 5000
+
+ingress:
+  enabled: false
+  name: react-app
+  port: 5000
+  dnsHostname:
+  annotations: {}

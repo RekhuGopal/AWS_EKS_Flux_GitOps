@@ -1,0 +1,53 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: apps-sources
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: infra-configs
+  interval: 10m0s
+  retryInterval: 1m0s
+  timeout: 5m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./k8s/apps/sources
+  prune: true
+  wait: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: apps-namespaces
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  retryInterval: 1m0s
+  timeout: 5m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./k8s/apps/namespaces
+  prune: true
+  wait: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: apps-addons
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: apps-sources
+    - name: apps-namespaces
+  interval: 10m0s
+  retryInterval: 1m0s
+  timeout: 5m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./k8s/apps/base
+  prune: true
+  wait: true
