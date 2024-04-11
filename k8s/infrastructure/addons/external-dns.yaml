@@ -23,7 +23,7 @@ spec:
       name: sa-external-dns
     region: us-west-2
     clusterName: eks-fluxcd-lab
-    domainFilters: ["dallin.brewsentry.com"]
+    domainFilters: ["demo.cqlabs.com"]
     policy: sync
   interval: 2m0s
   releaseName: external-dns

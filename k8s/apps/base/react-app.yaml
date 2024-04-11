@@ -28,8 +28,8 @@ spec:
         alb.ingress.kubernetes.io/scheme: internet-facing
         alb.ingress.kubernetes.io/ssl-redirect: "443"
         alb.ingress.kubernetes.io/target-type: ip
-        external-dns.alpha.kubernetes.io/hostname: react-app.dallin.brewsentry.com
-      dnsHostname: react-app.dallin.brewsentry.com
+        external-dns.alpha.kubernetes.io/hostname: react-app.demo.cqlabs.com
+      dnsHostname: react-app.demo.cqlabs.com
   interval: 2m0s
   releaseName: react-app
   targetNamespace: react-app

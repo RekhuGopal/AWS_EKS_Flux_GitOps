@@ -20,11 +20,6 @@ module "eks" {
       resolve_conflicts_on_update = "OVERWRITE"
       service_account_role_arn    = module.vpc_cni_ipv4_irsa_role.iam_role_arn
     }
-    # coredns = {
-    #   most_recent                 = true
-    #   resolve_conflicts           = "OVERWRITE"
-    #   resolve_conflicts_on_update = "OVERWRITE"
-    # }
   }
 
   vpc_id     = module.vpc.vpc_id
@@ -40,12 +35,12 @@ resource "aws_eks_node_group" "eks" {
   node_role_arn   = aws_iam_role.eks_node.arn
   subnet_ids      = module.vpc.private_subnets
   instance_types  = ["m5a.xlarge", "m5.xlarge"]
-  capacity_type   = "SPOT"
+
 
   scaling_config {
-    desired_size = 3
-    max_size     = 20
-    min_size     = 3
+    desired_size = 1
+    max_size     = 3
+    min_size     = 1
   }
 
   update_config {
