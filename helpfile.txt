@@ -10,7 +10,7 @@ kubectl create namespace flux-system
 flux check --pre
 
 3. Set Temp environment values
-$env:TMP = "D:\VSCode\GitRepos\AWS_EKS_Flux_GitOps"
+$env:TMP = ".\flux-system"
 
 4. Install Flux on EKS
 flux bootstrap github `
