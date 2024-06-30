@@ -25,3 +25,6 @@ kubectl apply -f sync.yaml
 
 6. Verify Installation
 flux get kustomizations
+
+7. See live logs
+flux get kustomization --watch
