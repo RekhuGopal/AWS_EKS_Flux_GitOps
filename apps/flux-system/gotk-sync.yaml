@@ -11,7 +11,7 @@ spec:
     branch: main
   secretRef:
     name: flux-system
-  url: ssh://git@github.com/RekhuGopal/AWS_EKS_Flux_GitOps
+  url: ssh://git@github.com/MSiva07/AWS_EKS_Flux_GitOps
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization

@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m0s
-  url: ssh://git@github.com/RekhuGopal/AWS_EKS_Flux_GitOps
+  url: https://github.com/MSiva07/AWS_EKS_Flux_GitOps.git
   ref:
     branch: main
   secretRef:
